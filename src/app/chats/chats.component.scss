@@ -1,0 +1,67 @@
+@import "../../assets/styles/mixins/media.scss";
+
+.container {
+  @include for-tablet-down() {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.col-sm-12 {
+  @include for-tablet-down() {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.chat-wrap {
+  @include for-tablet-down() {
+    flex-direction: column;
+  }
+}
+
+.contacts-wrap {
+  @include for-tablet-down() {
+    width: 100%;
+  }
+
+  .contact {
+    @include for-tablet-down() {
+      height: auto;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+
+  .icon {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+.contact.collapsed {
+  @include for-tablet-down() {
+    display: none;
+  }
+}
+
+.logo-block {
+  @include for-tablet-down() {
+    margin: 5% 0 0;
+    padding: 0 15%;
+  }
+}

@@ -1,0 +1,34 @@
+<div class="chat-block">
+    <div class="blocked-wrap">
+        <div style="position: relative">
+            <div class="chat" *ngIf="(messages | async)?.length > 0; else noMessages">
+                <div class="chat-message" *ngFor="let message of messages | async">
+                    <div class="chat-message-foto">
+                        <a href=""><img src="" alt="{{message.author}}"></a>
+                    </div>
+                    <div class="chat-message-text">
+                        {{message.content}}
+                    </div>
+                    <div class="chat-message-time">{{message.createdAt | fromNow}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-form">
+            <form action="">
+                <div class="textarea-wrap">
+                    <textarea [(ngModel)]="newMessage" (keydown.enter)="submit($event)" placeholder="Text"
+                        [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <div class="textarea-count-wrap">
+                    <div class="checkbox-wrap">
+                        <label><span></span>Press Enter to send</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #noMessages>
+    <div class="chat-placeholder">No messages yet</div>
+</ng-template>
