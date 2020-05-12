@@ -11,8 +11,8 @@ export const environment = {
     projectId: 'chat-18604',
     storageBucket: 'chat-18604.appspot.com',
     messagingSenderId: '705828507224',
-    appId: '1:705828507224:web:c03e6c3ea52624a19f042d'
-  }
+    appId: '1:705828507224:web:c03e6c3ea52624a19f042d',
+  },
 };
 
 /*

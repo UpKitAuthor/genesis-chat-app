@@ -6,14 +6,16 @@ import { ChatComponent } from './chats/chat/chat.component';
 const routes: Routes = [
   { path: '', redirectTo: 'chats', pathMatch: 'full' },
   {
-    path: 'chats', component: ChatsComponent, children: [
+    path: 'chats',
+    component: ChatsComponent,
+    children: [
       { path: ':botName', component: ChatComponent },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

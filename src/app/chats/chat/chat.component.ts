@@ -8,18 +8,20 @@ import { ChatMessage } from '../shared/chat-message';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
-
   constructor(
     public chatService: ChatService,
     private route: ActivatedRoute,
   ) { }
 
   messages: Observable<ChatMessage[]>;
+
   newMessage = '';
+
   botNameSub: Subscription;
+
   botName: string;
 
   ngOnInit(): void {
@@ -29,7 +31,8 @@ export class ChatComponent implements OnInit, OnDestroy {
         map((botName: string) => {
           this.botName = botName;
           this.messages = this.chatService.getMessages(botName);
-        }))
+        }),
+      )
       .subscribe();
   }
 
@@ -46,5 +49,4 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.newMessage = null;
     }
   }
-
 }

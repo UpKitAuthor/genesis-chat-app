@@ -6,29 +6,26 @@ import { Contact } from './contact';
 import { ChatMessage } from './chat-message';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatService {
-
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
   ) { }
 
   getContacts(): Observable<Contact[]> {
     return this.afs.collection('bots').get()
       .pipe(
-        map((collection: any) => {
-          return collection.docs.map(doc => doc.data());
-        }),
+        map((collection: any) => collection.docs.map((doc) => doc.data())),
       );
   }
 
   getMessages(botName: string): Observable<ChatMessage[]> {
-    return this.afs.collection('chats').doc(botName).collection('messages', ref => ref.orderBy('createdAt', 'desc'))
+    return this.afs.collection('chats').doc(botName).collection('messages', (ref) => ref.orderBy('createdAt', 'desc'))
       .snapshotChanges()
       .pipe(
         map((items: any) => {
-          const messages = items.map(i => i.payload.doc.data());
+          const messages = items.map((i) => i.payload.doc.data());
           return messages;
         }),
       );
@@ -40,7 +37,7 @@ export class ChatService {
     const data = {
       author: username,
       content,
-      createdAt: Date.now()
+      createdAt: Date.now(),
     };
 
     const ref = this.afs.collection('chats').doc(botName).collection('messages');
